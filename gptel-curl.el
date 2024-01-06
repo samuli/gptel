@@ -99,6 +99,7 @@ the response is inserted into the current buffer after point."
                              (random) (emacs-pid) (user-full-name)
                              (recent-keys))))
          (args (gptel-curl--get-args (plist-get info :prompt) token))
+         (args (append args '("-H" "Expect:")))
          (stream (and gptel-stream (gptel-backend-stream gptel-backend)))
          (process (apply #'start-process "gptel-curl"
                          (generate-new-buffer "*gptel-curl*") "curl" args)))
